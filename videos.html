@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURAILS — Videos</title>
+    <meta name="description" content="AURAILS — Stream music, discover artists, explore albums and videos.">
+    <meta name="theme-color" content="#08111A">
+    <link rel="icon" href="favicon.ico">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        (function () {
+            var theme = localStorage.getItem('aurails-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pages/videos.css">
+</head>
+<body data-page="videos">
+
+    <div class="bg-layer bg-glow"></div>
+    <div class="bg-layer bg-grid"></div>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <nav class="navbar-custom">
+        <div class="nav-left">
+            <a href="index.html" class="brand">
+                <div class="brand-wave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <span>AURAILS</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="music.html" class="nav-item"><i class="fa-solid fa-music"></i> Music</a></li>
+                <li><a href="artists.html" class="nav-item"><i class="fa-solid fa-microphone"></i> Artists</a></li>
+                <li><a href="albums.html" class="nav-item"><i class="fa-solid fa-compact-disc"></i> Albums</a></li>
+                <li><a href="videos.html" class="nav-item active"><i class="fa-solid fa-play"></i> Videos</a></li>
+                <li data-auth="user" hidden><a href="favorites.html" class="nav-item"><i class="fa-solid fa-heart"></i> Favorites</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-right">
+            <form class="search-wrap" id="searchForm" autocomplete="off">
+                <input type="text" name="q" class="search-input" placeholder="Search...">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <button type="button" class="search-clear" id="searchClear" hidden>
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </form>
+
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+
+            <span class="nav-guest" data-auth="guest">
+                <a href="user-login.html" class="btn-ghost">
+                    <i class="fa-solid fa-right-to-bracket"></i> <span class="d-none d-md-inline">Login</span>
+                </a>
+                <a href="user-register.html" class="btn-primary-glow">
+                    <i class="fa-solid fa-user-plus"></i> <span class="d-none d-md-inline">Register</span>
+                </a>
+            </span>
+            <span class="nav-user" data-auth="user" hidden>
+                <a href="profile.html" class="user-chip" id="userChip">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span id="userName">User</span>
+                </a>
+                <button type="button" class="logout-btn-icon" id="logoutBtn" title="Logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </span>
+
+            <button class="burger" id="burger">
+                <i class="fa-solid fa-bars" id="burgerIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="page-wrapper">
+<section class="page-header">
+    <div class="page-tag">
+        <i class="fa-solid fa-video"></i> All Videos
+    </div>
+    <h1 class="page-title">
+        Watch Music <span class="page-gradient">Come Alive</span>
+    </h1>
+    <p class="page-desc">
+        Official music videos, live performances, and cinematic moments from your favorite artists.
+    </p>
+
+    <div class="page-stats">
+        <div class="stat-item">
+            <div class="stat-value" data-bind="count">9</div>
+            <div class="stat-label">Total Videos</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+            <div class="stat-value" data-bind="artists">9</div>
+            <div class="stat-label">Artists</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+            <div class="stat-value" data-bind="new">2</div>
+            <div class="stat-label">New</div>
+        </div>
+    </div>
+</section>
+
+<section class="filter-bar">
+    <form class="filter-form" onsubmit="return false" data-page-size="0">
+        <div class="filter-group">
+            <label class="filter-label"><i class="fa-solid fa-filter"></i> Filters</label>
+        </div>
+
+        <div class="filter-group">
+            <select name="genre" class="filter-select">
+                <option value="">All Genres</option>
+                <option value="10">Blues</option>
+                <option value="3">Classical</option>
+                <option value="8">Country</option>
+                <option value="6">Electronic</option>
+                <option value="9">Folk</option>
+                <option value="5">Hip Hop</option>
+                <option value="4">Jazz</option>
+                <option value="1">Pop</option>
+                <option value="7">R&amp;B</option>
+                <option value="2">Rock</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <select name="artist" class="filter-select">
+                <option value="">All Artists</option>
+                <option value="2">Ali Zafar</option>
+                <option value="8">Arijit Singh</option>
+                <option value="1">Atif Aslam</option>
+                <option value="6">Billie Eilish</option>
+                <option value="5">Ed Sheeran</option>
+                <option value="10">Marshmello</option>
+                <option value="3">Rahat Fateh Ali Khan</option>
+                <option value="7">Shakira</option>
+                <option value="9">Shreya Ghoshal</option>
+                <option value="4">Taylor Swift</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <select name="year" class="filter-select">
+                <option value="">All Years</option>
+                <option value="2021">2021</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+                <option value="2010">2010</option>
+                <option value="2008">2008</option>
+                <option value="2006">2006</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <select name="sort" class="filter-select">
+                <option value="latest">Latest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="az">Title (A-Z)</option>
+                <option value="za">Title (Z-A)</option>
+            </select>
+        </div>
+
+        <a href="#" class="filter-clear" hidden><i class="fa-solid fa-xmark"></i> Clear</a>
+    </form>
+</section>
+
+<section class="section" data-results>
+    <div class="section-head">
+        <div>
+            <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-play-circle"></i></span>All Videos</h2>
+            <p class="section-sub"><span data-bind="count">9</span> <span data-bind="plural" data-word="video">videos</span> available</p>
+        </div>
+    </div>
+
+    <div class="videos-grid" data-grid>
+            <a href="video-9.html" class="video-card" data-filter-item data-genre="6" data-artist="10" data-year="2016" data-title="alone - marshmello" data-order="9" data-new="0">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/alone-thumb.jpg" alt="Alone - Marshmello" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">4:32</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Alone - Marshmello</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Marshmello
+                        · 2016
+                    </div>
+                </div>
+            </a>
+            <a href="video-8.html" class="video-card" data-filter-item data-genre="3" data-artist="9" data-year="2018" data-title="ghoomar - shreya ghoshal" data-order="8" data-new="1">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/ghoomar-thumb.jpg" alt="Ghoomar - Shreya Ghoshal" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">4:45</span>
+                    <span class="badge-new">New</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Ghoomar - Shreya Ghoshal</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Shreya Ghoshal
+                        · 2018
+                    </div>
+                </div>
+            </a>
+            <a href="video-7.html" class="video-card" data-filter-item data-genre="1" data-artist="8" data-year="2013" data-title="tum hi ho - arijit singh" data-order="7" data-new="0">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/tum-hi-ho-thumb.jpg" alt="Tum Hi Ho - Arijit Singh" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">4:22</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Tum Hi Ho - Arijit Singh</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Arijit Singh
+                        · 2013
+                    </div>
+                </div>
+            </a>
+            <a href="video-6.html" class="video-card" data-filter-item data-genre="1" data-artist="6" data-year="2021" data-title="happier than ever - billie eilish" data-order="6" data-new="1">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/happier-than-ever-thumb.jpg" alt="Happier Than Ever - Billie Eilish" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">4:58</span>
+                    <span class="badge-new">New</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Happier Than Ever - Billie Eilish</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Billie Eilish
+                        · 2021
+                    </div>
+                </div>
+            </a>
+            <a href="video-5.html" class="video-card" data-filter-item data-genre="1" data-artist="5" data-year="2017" data-title="shape of you - ed sheeran" data-order="5" data-new="0">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/shape-of-you-thumb.jpg" alt="Shape of You - Ed Sheeran" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">4:24</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Shape of You - Ed Sheeran</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Ed Sheeran
+                        · 2017
+                    </div>
+                </div>
+            </a>
+            <a href="video-4.html" class="video-card" data-filter-item data-genre="1" data-artist="4" data-year="2014" data-title="shake it off - taylor swift" data-order="4" data-new="0">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/shake-it-off-thumb.jpg" alt="Shake It Off - Taylor Swift" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">3:39</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Shake It Off - Taylor Swift</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Taylor Swift
+                        · 2014
+                    </div>
+                </div>
+            </a>
+            <a href="video-3.html" class="video-card" data-filter-item data-genre="3" data-artist="3" data-year="2010" data-title="tajdar-e-haram - rahat fateh ali khan" data-order="3" data-new="0">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/tajdar-thumb.jpg" alt="Tajdar-e-Haram - Rahat Fateh Ali Khan" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">8:15</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Tajdar-e-Haram - Rahat Fateh Ali Khan</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Rahat Fateh Ali Khan
+                        · 2010
+                    </div>
+                </div>
+            </a>
+            <a href="video-2.html" class="video-card" data-filter-item data-genre="2" data-artist="2" data-year="2008" data-title="jhoom - ali zafar" data-order="2" data-new="0">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/jhoom-thumb.jpg" alt="Jhoom - Ali Zafar" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">3:45</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Jhoom - Ali Zafar</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Ali Zafar
+                        · 2008
+                    </div>
+                </div>
+            </a>
+            <a href="video-1.html" class="video-card" data-filter-item data-genre="1" data-artist="1" data-year="2006" data-title="aadat - atif aslam" data-order="1" data-new="0">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/aadat-thumb.jpg" alt="Aadat - Atif Aslam" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">4:32</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Aadat - Atif Aslam</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Atif Aslam
+                        · 2006
+                    </div>
+                </div>
+            </a>
+    </div>
+</section>
+<div class="empty-state" data-empty hidden>
+    <i class="fa-solid fa-video"></i>
+    <h3>No videos found</h3>
+    <p>Try changing your filters or <a href="#" data-clear-filters style="color: var(--accent); font-weight: 700;">clear all filters</a>.</p>
+</div>
+    </main>
+
+    <div class="player" id="player">
+        <div class="player-track">
+            <div class="player-art"><i class="fa-solid fa-music"></i></div>
+            <div class="player-meta">
+                <div class="player-title">Midnight Frequencies</div>
+                <div class="player-artist">Neon Collective</div>
+            </div>
+        </div>
+        <div class="player-center">
+            <div class="player-controls">
+                <button><i class="fa-solid fa-shuffle"></i></button>
+                <button><i class="fa-solid fa-backward-step"></i></button>
+                <button class="player-play" id="playerPlay"><i class="fa-solid fa-play"></i></button>
+                <button><i class="fa-solid fa-forward-step"></i></button>
+                <button><i class="fa-solid fa-repeat"></i></button>
+            </div>
+            <div class="player-progress">
+                <span>1:24</span>
+                <div class="player-bar"><div class="player-bar-fill"></div></div>
+                <span>3:45</span>
+            </div>
+        </div>
+        <div class="player-right">
+            <div class="player-wave"><span></span><span></span><span></span><span></span><span></span></div>
+            <i class="fa-solid fa-heart liked"></i>
+            <i class="fa-solid fa-volume-high"></i>
+        </div>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/filters.js"></script>
+</body>
+</html>

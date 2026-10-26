@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURAILS — Shake It Off - Taylor Swift</title>
+    <meta name="description" content="AURAILS — Stream music, discover artists, explore albums and videos.">
+    <meta name="theme-color" content="#08111A">
+    <link rel="icon" href="favicon.ico">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        (function () {
+            var theme = localStorage.getItem('aurails-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pages/video_show.css">
+</head>
+<body data-page="video-show">
+
+    <div class="bg-layer bg-glow"></div>
+    <div class="bg-layer bg-grid"></div>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <nav class="navbar-custom">
+        <div class="nav-left">
+            <a href="index.html" class="brand">
+                <div class="brand-wave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <span>AURAILS</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="music.html" class="nav-item"><i class="fa-solid fa-music"></i> Music</a></li>
+                <li><a href="artists.html" class="nav-item"><i class="fa-solid fa-microphone"></i> Artists</a></li>
+                <li><a href="albums.html" class="nav-item"><i class="fa-solid fa-compact-disc"></i> Albums</a></li>
+                <li><a href="videos.html" class="nav-item active"><i class="fa-solid fa-play"></i> Videos</a></li>
+                <li data-auth="user" hidden><a href="favorites.html" class="nav-item"><i class="fa-solid fa-heart"></i> Favorites</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-right">
+            <form class="search-wrap" id="searchForm" autocomplete="off">
+                <input type="text" name="q" class="search-input" placeholder="Search...">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <button type="button" class="search-clear" id="searchClear" hidden>
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </form>
+
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+
+            <span class="nav-guest" data-auth="guest">
+                <a href="user-login.html" class="btn-ghost">
+                    <i class="fa-solid fa-right-to-bracket"></i> <span class="d-none d-md-inline">Login</span>
+                </a>
+                <a href="user-register.html" class="btn-primary-glow">
+                    <i class="fa-solid fa-user-plus"></i> <span class="d-none d-md-inline">Register</span>
+                </a>
+            </span>
+            <span class="nav-user" data-auth="user" hidden>
+                <a href="profile.html" class="user-chip" id="userChip">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span id="userName">User</span>
+                </a>
+                <button type="button" class="logout-btn-icon" id="logoutBtn" title="Logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </span>
+
+            <button class="burger" id="burger">
+                <i class="fa-solid fa-bars" id="burgerIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="page-wrapper">
+<section class="video-hero">
+    <div class="video-hero-bg"></div>
+
+    <div class="video-hero-content">
+
+        <div class="video-player-wrap">
+            <div class="yt-embed-wrap yt-lazy" onclick="loadYoutube(this, 'nfWlot6h_JM')">
+                <img src="assets/storage/videos/shake-it-off-thumb.jpg"
+                     alt="Shake It Off - Taylor Swift" class="yt-thumb">
+
+                <div class="yt-play-overlay">
+                    <div class="yt-play-btn"><i class="fa-solid fa-play"></i></div>
+                    <div class="yt-play-label">Click to Play</div>
+                </div>
+
+                <div class="yt-brand">
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+            </div>
+
+            <div class="yt-fallback-hint">
+                <i class="fa-solid fa-circle-info"></i>
+                Video nahi chal rahi?
+                <a href="https://www.youtube.com/watch?v=nfWlot6h_JM" target="_blank" rel="noopener">
+                    YouTube pe dekho <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="video-info-panel">
+            <div class="hero-tag">
+                <i class="fa-solid fa-video"></i>
+                Official Video
+            </div>
+
+            <h1 class="video-hero-title">Shake It Off - Taylor Swift</h1>
+
+            <div class="hero-meta">
+                <a href="artist-4.html" class="meta-link">
+                    <i class="fa-solid fa-user"></i>
+                    Taylor Swift
+                </a>
+                <a href="album-4.html" class="meta-link">
+                    <i class="fa-solid fa-compact-disc"></i>
+                    1989
+                </a>
+            </div>
+
+            <div class="hero-chips">
+                <span class="chip"><i class="fa-solid fa-tag"></i> Pop</span>
+                <span class="chip"><i class="fa-solid fa-globe"></i> English</span>
+                <span class="chip"><i class="fa-solid fa-calendar"></i> 2014</span>
+                <span class="chip"><i class="fa-solid fa-clock"></i> 3:39</span>
+            </div>
+
+            <p class="video-hero-desc">Official video of &quot;Shake It Off&quot;.</p>
+
+            <div class="hero-actions">
+                <a href="https://www.youtube.com/watch?v=nfWlot6h_JM"
+                   target="_blank" rel="noopener"
+                   class="btn-primary-glow">
+                    <span><i class="fa-brands fa-youtube me-2"></i> Watch on YouTube</span>
+                </a>
+
+                <span data-auth="user" hidden>
+                    <button type="button" class="btn-ghost" onclick="Aurails.addFavorite(4)">
+                        <i class="fa-solid fa-heart"></i> Add to Favorites
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-head">
+        <div>
+            <h2 class="section-title">
+                <span class="icon-badge"><i class="fa-solid fa-circle-info"></i></span>
+                Video Details
+            </h2>
+        </div>
+    </div>
+
+    <div class="details-grid">
+        <div class="detail-card">
+            <div class="detail-icon"><i class="fa-solid fa-user"></i></div>
+            <div class="detail-info">
+                <div class="detail-label">Artist</div>
+                <div class="detail-value">Taylor Swift</div>
+            </div>
+        </div>
+        <div class="detail-card">
+            <div class="detail-icon"><i class="fa-solid fa-compact-disc"></i></div>
+            <div class="detail-info">
+                <div class="detail-label">Album</div>
+                <div class="detail-value">1989</div>
+            </div>
+        </div>
+        <div class="detail-card">
+            <div class="detail-icon"><i class="fa-solid fa-tag"></i></div>
+            <div class="detail-info">
+                <div class="detail-label">Genre</div>
+                <div class="detail-value">Pop</div>
+            </div>
+        </div>
+        <div class="detail-card">
+            <div class="detail-icon"><i class="fa-solid fa-globe"></i></div>
+            <div class="detail-info">
+                <div class="detail-label">Language</div>
+                <div class="detail-value">English</div>
+            </div>
+        </div>
+        <div class="detail-card">
+            <div class="detail-icon"><i class="fa-solid fa-calendar"></i></div>
+            <div class="detail-info">
+                <div class="detail-label">Release Year</div>
+                <div class="detail-value">2014</div>
+            </div>
+        </div>
+        <div class="detail-card">
+            <div class="detail-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="detail-info">
+                <div class="detail-label">Duration</div>
+                <div class="detail-value">3:39</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-head">
+        <div>
+            <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-play-circle"></i></span>More Videos</h2>
+        </div>
+        <a href="videos.html" class="view-all">
+            View All <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <div class="videos-grid">
+            <a href="video-1.html" class="video-card">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/aadat-thumb.jpg" alt="Aadat - Atif Aslam" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">4:32</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Aadat - Atif Aslam</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Atif Aslam
+                    </div>
+                </div>
+            </a>
+            <a href="video-2.html" class="video-card">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/jhoom-thumb.jpg" alt="Jhoom - Ali Zafar" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">3:45</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Jhoom - Ali Zafar</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Ali Zafar
+                    </div>
+                </div>
+            </a>
+            <a href="video-3.html" class="video-card">
+                <div class="video-img-wrap">
+                    <img src="assets/storage/videos/tajdar-thumb.jpg" alt="Tajdar-e-Haram - Rahat Fateh Ali Khan" class="video-img">
+                    <div class="video-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">8:15</span>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Tajdar-e-Haram - Rahat Fateh Ali Khan</h3>
+                    <div class="video-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Rahat Fateh Ali Khan
+                    </div>
+                </div>
+            </a>
+    </div>
+</section>
+
+<section class="section reviews-section">
+    <div class="section-head">
+        <div>
+            <h2 class="section-title">
+                <span class="icon-badge"><i class="fa-solid fa-star"></i></span>
+                Reviews
+            </h2>
+            <p class="section-sub"><span id="reviewCount">1</span> review</p>
+        </div>
+    </div>
+
+    <div class="reviews-layout">
+        <div class="reviews-left">
+            <div class="rating-summary">
+                <div class="rating-big">
+                    <div class="rating-number">4.0</div>
+                    <div class="rating-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                    </div>
+                    <div class="rating-count">1 ratings</div>
+                </div>
+            </div>
+
+            <div class="review-form-wrap" data-auth="user" hidden>
+                <div class="form-header">
+                    <i class="fa-solid fa-pen"></i>
+                    <span>Write a Review</span>
+                </div>
+                <form class="review-form" id="reviewForm">
+                    <div class="form-group">
+                        <label class="form-label">Your Rating</label>
+                        <div class="star-input">
+                                    <input type="radio" name="review_rating" id="star5" value="5" required>
+                                    <label for="star5" title="5 star">
+                                        <i class="fa-solid fa-star"></i>
+                                    </label>
+                                    <input type="radio" name="review_rating" id="star4" value="4" required>
+                                    <label for="star4" title="4 star">
+                                        <i class="fa-solid fa-star"></i>
+                                    </label>
+                                    <input type="radio" name="review_rating" id="star3" value="3" required>
+                                    <label for="star3" title="3 star">
+                                        <i class="fa-solid fa-star"></i>
+                                    </label>
+                                    <input type="radio" name="review_rating" id="star2" value="2" required>
+                                    <label for="star2" title="2 star">
+                                        <i class="fa-solid fa-star"></i>
+                                    </label>
+                                    <input type="radio" name="review_rating" id="star1" value="1" required>
+                                    <label for="star1" title="1 star">
+                                        <i class="fa-solid fa-star"></i>
+                                    </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Your Review</label>
+                        <textarea name="review_text" rows="4"
+                                  class="form-textarea"
+                                  placeholder="Share your thoughts about this video..."
+                                  maxlength="1000"
+                                  required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit-review">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Review
+                    </button>
+                </form>
+            </div>
+
+            <div class="login-prompt" data-auth="guest">
+                <i class="fa-solid fa-lock"></i>
+                <p>Sign in to write a review</p>
+                <a href="user-login.html" class="btn-primary-glow">
+                    <span><i class="fa-solid fa-right-to-bracket me-2"></i> Login</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="reviews-right">
+            <div class="reviews-list" id="reviewsList">
+                        <div class="review-item">
+                            <div class="review-avatar">
+                                S
+                            </div>
+                            <div class="review-body">
+                                <div class="review-head">
+                                    <div class="review-user">Sara Khan</div>
+                                    <div class="review-date">1 week ago</div>
+                                </div>
+                                <div class="review-stars">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                                </div>
+                                <p class="review-text">Taylor Swift&#x27;s Shake It Off is so catchy and fun to watch!</p>
+                            </div>
+                        </div>
+                </div>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <div class="player" id="player">
+        <div class="player-track">
+            <div class="player-art"><i class="fa-solid fa-music"></i></div>
+            <div class="player-meta">
+                <div class="player-title">Midnight Frequencies</div>
+                <div class="player-artist">Neon Collective</div>
+            </div>
+        </div>
+        <div class="player-center">
+            <div class="player-controls">
+                <button><i class="fa-solid fa-shuffle"></i></button>
+                <button><i class="fa-solid fa-backward-step"></i></button>
+                <button class="player-play" id="playerPlay"><i class="fa-solid fa-play"></i></button>
+                <button><i class="fa-solid fa-forward-step"></i></button>
+                <button><i class="fa-solid fa-repeat"></i></button>
+            </div>
+            <div class="player-progress">
+                <span>1:24</span>
+                <div class="player-bar"><div class="player-bar-fill"></div></div>
+                <span>3:45</span>
+            </div>
+        </div>
+        <div class="player-right">
+            <div class="player-wave"><span></span><span></span><span></span><span></span><span></span></div>
+            <i class="fa-solid fa-heart liked"></i>
+            <i class="fa-solid fa-volume-high"></i>
+        </div>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/pages/video-show.js"></script>
+    <script src="assets/js/reviews.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+/* from Admin/artist/index.blade.php */
+    .admin-artist-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(20, 184, 166, 0.4);
+        box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
+    }
+
+    .admin-artist-avatar-letter {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #14B8A6, #0EA5E9);
+        color: #08111A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 18px;
+        font-family: 'Space Grotesk', sans-serif;
+        border: 2px solid rgba(20, 184, 166, 0.4);
+    }

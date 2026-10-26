@@ -1,0 +1,233 @@
+/* from Admin/dashboard.blade.php */
+    .welcome-banner {
+        background: linear-gradient(135deg, #0F172A 0%, #0B1E2C 100%);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 24px 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .welcome-banner::before {
+        content: '';
+        position: absolute;
+        top: -50%; right: -50%;
+        width: 400px; height: 400px;
+        background: radial-gradient(circle, rgba(20, 184, 166, 0.15), transparent 70%);
+        pointer-events: none;
+    }
+
+    .welcome-title { color: var(--text); font-weight: 800; font-size: 22px; }
+    .welcome-name { color: var(--accent); }
+    .welcome-sub { color: var(--gray); font-size: 13.5px; }
+    .welcome-icon { font-size: 38px; color: var(--primary); position: relative; z-index: 1; }
+
+    .kpi-card {
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .kpi-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(20, 184, 166, 0.2);
+    }
+
+    .kpi-body {
+        padding: 20px 20px 18px;
+        position: relative;
+        overflow: hidden;
+        color: #08111A;
+        flex-grow: 1;
+    }
+
+    .kpi-body::after {
+        content: '';
+        position: absolute;
+        top: -30px; right: -30px;
+        width: 120px; height: 120px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .kpi-value {
+        font-size: 34px;
+        font-weight: 800;
+        line-height: 1;
+        margin-bottom: 6px;
+        color: #08111A;
+        font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .kpi-label {
+        font-size: 13.5px;
+        font-weight: 600;
+        opacity: 0.85;
+        color: #08111A;
+    }
+
+    .kpi-icon {
+        position: absolute;
+        top: 20px; right: 20px;
+        font-size: 24px;
+        width: 46px; height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 12px;
+        color: #08111A;
+    }
+
+    .kpi-footer {
+        padding: 10px 20px;
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        letter-spacing: 0.3px;
+    }
+
+    .chart-title { color: var(--text); font-weight: 700; font-size: 15px; }
+
+    .badge-trend {
+        background: rgba(20, 184, 166, 0.15);
+        color: var(--accent);
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .chart-wrapper { height: 220px; position: relative; margin-bottom: 16px; }
+
+    .chart-footer {
+        display: flex;
+        justify-content: space-around;
+        padding-top: 16px;
+        border-top: 1px solid var(--card-border);
+    }
+
+    .chart-foot-value {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--accent);
+        text-align: center;
+        font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .chart-foot-label {
+        font-size: 12px;
+        color: var(--gray);
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .donut-wrapper {
+        height: 180px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .donut-legend {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12.5px;
+        color: var(--text);
+        font-weight: 600;
+    }
+
+    .legend-item .dot {
+        width: 10px; height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .artist-row-dash { margin-bottom: 18px; }
+    .artist-row-dash:last-child { margin-bottom: 0; }
+
+    .artist-info-dash {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+        font-size: 13px;
+    }
+
+    .artist-name-dash {
+        color: var(--text);
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 65%;
+    }
+
+    .artist-count-dash { color: var(--accent); font-weight: 700; }
+
+    .progress-track {
+        background: rgba(148, 163, 184, 0.15);
+        height: 6px;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .progress-fill-teal {
+        background: linear-gradient(90deg, #14B8A6, #67E8F9);
+        height: 100%;
+        border-radius: 6px;
+        transition: width 0.6s ease;
+        box-shadow: 0 0 10px rgba(20, 184, 166, 0.4);
+    }
+
+    .list-group-item {
+        background-color: transparent !important;
+        color: var(--text) !important;
+        border-color: var(--card-border) !important;
+        padding: 14px 20px;
+        font-size: 14px;
+        transition: 0.2s;
+    }
+
+    .list-group-item:hover {
+        background-color: rgba(20, 184, 166, 0.04) !important;
+    }
+
+    .pill-badge {
+        background: var(--primary);
+        color: #08111A;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .pill-badge.rating { background: #F59E0B; }
+
+    .view-all-link {
+        color: var(--primary);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        transition: 0.2s;
+    }
+
+    .view-all-link:hover { color: var(--accent); }

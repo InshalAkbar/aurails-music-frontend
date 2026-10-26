@@ -1,0 +1,49 @@
+/* from Admin/users/index.blade.php */
+    .admin-user-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(20, 184, 166, 0.4);
+        box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
+    }
+
+    .admin-user-avatar-letter {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #14B8A6, #0EA5E9);
+        color: #08111A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 18px;
+        font-family: 'Space Grotesk', sans-serif;
+        border: 2px solid rgba(20, 184, 166, 0.4);
+        box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
+    }
+
+    .badge-role {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .badge-role.admin {
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        color: #FCD34D;
+    }
+
+    .badge-role.user {
+        background: rgba(20, 184, 166, 0.12);
+        border: 1px solid rgba(20, 184, 166, 0.3);
+        color: #67E8F9;
+    }

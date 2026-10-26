@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURAILS Admin - Videos List</title>
+    <link rel="icon" href="../../favicon.ico">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../assets/css/admin/master.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h4 class="brand-title">
+                <i class="bi bi-wave-square"></i> AURAILS PANEL
+            </h4>
+        </div>
+
+        <div class="nav-links">
+            <a href="../dashboard.html"
+               class="nav-link-admin">
+                <i class="bi bi-speedometer2"></i> Dashboard
+            </a>
+
+            <div class="nav-group-label">Music Management</div>
+
+            <a href="../artists/index.html"
+               class="nav-link-admin">
+                <i class="bi bi-mic"></i> Artists
+            </a>
+
+            <a href="../albums/index.html"
+               class="nav-link-admin">
+                <i class="bi bi-journal-album"></i> Albums
+            </a>
+
+            <a href="../genres/index.html"
+               class="nav-link-admin">
+                <i class="bi bi-tags"></i> Genres
+            </a>
+
+            <a href="../languages/index.html"
+               class="nav-link-admin">
+                <i class="bi bi-translate"></i> Languages
+            </a>
+
+            <a href="../music/index.html"
+               class="nav-link-admin">
+                <i class="bi bi-music-note-beamed"></i> Music Track
+            </a>
+
+            <a href="../videos/index.html"
+               class="nav-link-admin active">
+                <i class="bi bi-camera-video"></i> Videos
+            </a>
+
+            <div class="nav-group-label">Community</div>
+
+            <a href="../reviews/index.html"
+               class="nav-link-admin">
+                <i class="bi bi-star"></i> Reviews
+            </a>
+
+            <a href="../users/index.html"
+               class="nav-link-admin">
+                <i class="bi bi-people"></i> Users
+            </a>
+
+            <div class="nav-group-label">System</div>
+
+            <a href="../settings.html"
+               class="nav-link-admin">
+                <i class="bi bi-gear"></i> Settings
+            </a>
+
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="top-navbar">
+            <h5 class="page-title">Manage Videos</h5>
+            <div class="d-flex align-items-center gap-3">
+                <a href="../../index.html" target="_blank" class="text-decoration-none" style="color: var(--gray); font-size: 13px;">
+                    <i class="bi bi-globe me-1"></i> Visit Website
+                </a>
+
+                <div class="btn-logout-form">
+                    <button type="button" class="btn-logout" id="adminLogout" data-href="../login.html">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </div>
+
+                <div class="top-avatar">A</div>
+            </div>
+        </div>
+
+        <div class="p-4">
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">All Videos</h5>
+            <a href="create.html" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Add New Video
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-success alert-dismissible fade show" id="flash" hidden>
+                <span id="flashText"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                        <tr><th>#</th><th>Thumbnail</th><th>Title</th><th>Artist</th><th>Album</th><th>Year</th><th>Duration</th><th>Status</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><img src="../../assets/storage/videos/aadat-thumb.jpg" alt="Aadat - Atif Aslam" width="50" height="50" style="object-fit:cover; border-radius:5px;"></td>
+                            <td>Aadat - Atif Aslam</td>
+                            <td>Atif Aslam</td>
+                            <td>Doorie</td>
+                            <td>2006</td>
+                            <td>4:32</td>
+                            <td>
+                                <span class="badge bg-secondary">Old</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="show-1.html" class="btn btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="edit-1.html" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-delete="Are you sure?">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><img src="../../assets/storage/videos/jhoom-thumb.jpg" alt="Jhoom - Ali Zafar" width="50" height="50" style="object-fit:cover; border-radius:5px;"></td>
+                            <td>Jhoom - Ali Zafar</td>
+                            <td>Ali Zafar</td>
+                            <td>Meri Kahani</td>
+                            <td>2008</td>
+                            <td>3:45</td>
+                            <td>
+                                <span class="badge bg-secondary">Old</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="show-2.html" class="btn btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="edit-2.html" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-delete="Are you sure?">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><img src="../../assets/storage/videos/tajdar-thumb.jpg" alt="Tajdar-e-Haram - Rahat Fateh Ali Khan" width="50" height="50" style="object-fit:cover; border-radius:5px;"></td>
+                            <td>Tajdar-e-Haram - Rahat Fateh Ali Khan</td>
+                            <td>Rahat Fateh Ali Khan</td>
+                            <td>Qawwali &amp; More</td>
+                            <td>2010</td>
+                            <td>8:15</td>
+                            <td>
+                                <span class="badge bg-secondary">Old</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="show-3.html" class="btn btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="edit-3.html" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-delete="Are you sure?">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><img src="../../assets/storage/videos/shake-it-off-thumb.jpg" alt="Shake It Off - Taylor Swift" width="50" height="50" style="object-fit:cover; border-radius:5px;"></td>
+                            <td>Shake It Off - Taylor Swift</td>
+                            <td>Taylor Swift</td>
+                            <td>1989</td>
+                            <td>2014</td>
+                            <td>3:39</td>
+                            <td>
+                                <span class="badge bg-secondary">Old</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="show-4.html" class="btn btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="edit-4.html" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-delete="Are you sure?">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><img src="../../assets/storage/videos/shape-of-you-thumb.jpg" alt="Shape of You - Ed Sheeran" width="50" height="50" style="object-fit:cover; border-radius:5px;"></td>
+                            <td>Shape of You - Ed Sheeran</td>
+                            <td>Ed Sheeran</td>
+                            <td>Divide</td>
+                            <td>2017</td>
+                            <td>4:24</td>
+                            <td>
+                                <span class="badge bg-secondary">Old</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="show-5.html" class="btn btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="edit-5.html" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-delete="Are you sure?">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><img src="../../assets/storage/videos/happier-than-ever-thumb.jpg" alt="Happier Than Ever - Billie Eilish" width="50" height="50" style="object-fit:cover; border-radius:5px;"></td>
+                            <td>Happier Than Ever - Billie Eilish</td>
+                            <td>Billie Eilish</td>
+                            <td>Happier Than Ever</td>
+                            <td>2021</td>
+                            <td>4:58</td>
+                            <td>
+                                <span class="badge bg-success">New</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="show-6.html" class="btn btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="edit-6.html" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-delete="Are you sure?">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><img src="../../assets/storage/videos/tum-hi-ho-thumb.jpg" alt="Tum Hi Ho - Arijit Singh" width="50" height="50" style="object-fit:cover; border-radius:5px;"></td>
+                            <td>Tum Hi Ho - Arijit Singh</td>
+                            <td>Arijit Singh</td>
+                            <td>Aashiqui 2</td>
+                            <td>2013</td>
+                            <td>4:22</td>
+                            <td>
+                                <span class="badge bg-secondary">Old</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="show-7.html" class="btn btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="edit-7.html" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-delete="Are you sure?">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><img src="../../assets/storage/videos/ghoomar-thumb.jpg" alt="Ghoomar - Shreya Ghoshal" width="50" height="50" style="object-fit:cover; border-radius:5px;"></td>
+                            <td>Ghoomar - Shreya Ghoshal</td>
+                            <td>Shreya Ghoshal</td>
+                            <td>Ghoomar</td>
+                            <td>2018</td>
+                            <td>4:45</td>
+                            <td>
+                                <span class="badge bg-success">New</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="show-8.html" class="btn btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="edit-8.html" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-delete="Are you sure?">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><img src="../../assets/storage/videos/alone-thumb.jpg" alt="Alone - Marshmello" width="50" height="50" style="object-fit:cover; border-radius:5px;"></td>
+                            <td>Alone - Marshmello</td>
+                            <td>Marshmello</td>
+                            <td>Joytime</td>
+                            <td>2016</td>
+                            <td>4:32</td>
+                            <td>
+                                <span class="badge bg-secondary">Old</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="show-9.html" class="btn btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="edit-9.html" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-delete="Are you sure?">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/data.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/admin.js"></script>
+</body>
+</html>

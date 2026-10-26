@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURAILS — Feel Every Frequency</title>
+    <meta name="description" content="AURAILS — Stream music, discover artists, explore albums and videos.">
+    <meta name="theme-color" content="#08111A">
+    <link rel="icon" href="favicon.ico">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        (function () {
+            var theme = localStorage.getItem('aurails-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body data-page="home">
+
+    <div class="bg-layer bg-glow"></div>
+    <div class="bg-layer bg-grid"></div>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <nav class="navbar-custom">
+        <div class="nav-left">
+            <a href="index.html" class="brand">
+                <div class="brand-wave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <span>AURAILS</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-item active"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="music.html" class="nav-item"><i class="fa-solid fa-music"></i> Music</a></li>
+                <li><a href="artists.html" class="nav-item"><i class="fa-solid fa-microphone"></i> Artists</a></li>
+                <li><a href="albums.html" class="nav-item"><i class="fa-solid fa-compact-disc"></i> Albums</a></li>
+                <li><a href="videos.html" class="nav-item"><i class="fa-solid fa-play"></i> Videos</a></li>
+                <li data-auth="user" hidden><a href="favorites.html" class="nav-item"><i class="fa-solid fa-heart"></i> Favorites</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-right">
+            <form class="search-wrap" id="searchForm" autocomplete="off">
+                <input type="text" name="q" class="search-input" placeholder="Search...">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <button type="button" class="search-clear" id="searchClear" hidden>
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </form>
+
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+
+            <span class="nav-guest" data-auth="guest">
+                <a href="user-login.html" class="btn-ghost">
+                    <i class="fa-solid fa-right-to-bracket"></i> <span class="d-none d-md-inline">Login</span>
+                </a>
+                <a href="user-register.html" class="btn-primary-glow">
+                    <i class="fa-solid fa-user-plus"></i> <span class="d-none d-md-inline">Register</span>
+                </a>
+            </span>
+            <span class="nav-user" data-auth="user" hidden>
+                <a href="profile.html" class="user-chip" id="userChip">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span id="userName">User</span>
+                </a>
+                <button type="button" class="logout-btn-icon" id="logoutBtn" title="Logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </span>
+
+            <button class="burger" id="burger">
+                <i class="fa-solid fa-bars" id="burgerIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="page-wrapper">
+<section class="hero-section">
+    <div class="hero-left">
+        <div class="hero-tag">
+            <i class="fa-solid fa-wave-square"></i> Sound Reimagined
+        </div>
+        <h1 class="hero-title">
+            Feel Every<br>
+            <span class="hero-gradient">Frequency</span><br>
+            with Aurails.
+        </h1>
+        <p class="hero-desc">
+            Discover, stream, and create the perfect sound for every moment.
+            Your journey into a world of pure audio excellence starts here.
+        </p>
+        <div class="hero-actions">
+            <a href="music.html" class="btn-primary-glow">
+                <span><i class="fa-solid fa-play me-2"></i> Explore Sounds</span>
+            </a>
+            <a href="artists.html" class="btn-ghost">
+                <i class="fa-solid fa-microphone"></i> Top Artists
+            </a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat"><div class="stat-value">22+</div><div class="stat-label">Tracks</div></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><div class="stat-value">16+</div><div class="stat-label">Artists</div></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><div class="stat-value">16+</div><div class="stat-label">Albums</div></div>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <div class="corner-label tl">AURAILS · 001</div>
+        <div class="corner-label tr">LIVE · ORBIT</div>
+        <div class="corner-label bl">drag to explore</div>
+        <div class="corner-label br">48.0 kHz</div>
+
+        <div class="orbit-stage">
+            <div class="bars-orbit">
+                <div class="bar-wrapper" style="transform: rotate(0deg);"><div class="bar bar-xl" style="animation-delay: 0s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(5.625deg);"><div class="bar bar-lg" style="animation-delay: 0.08s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(11.25deg);"><div class="bar bar-md" style="animation-delay: 0.16s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(16.875deg);"><div class="bar bar-sm" style="animation-delay: 0.24s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(22.5deg);"><div class="bar bar-xl" style="animation-delay: 0.32s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(28.125deg);"><div class="bar bar-lg" style="animation-delay: 0.4s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(33.75deg);"><div class="bar bar-md" style="animation-delay: 0.48s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(39.375deg);"><div class="bar bar-sm" style="animation-delay: 0.56s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(45deg);"><div class="bar bar-xl" style="animation-delay: 0.64s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(50.625deg);"><div class="bar bar-lg" style="animation-delay: 0.72s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(56.25deg);"><div class="bar bar-md" style="animation-delay: 0.8s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(61.875deg);"><div class="bar bar-sm" style="animation-delay: 0.88s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(67.5deg);"><div class="bar bar-xl" style="animation-delay: 0.96s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(73.125deg);"><div class="bar bar-lg" style="animation-delay: 1.04s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(78.75deg);"><div class="bar bar-md" style="animation-delay: 1.12s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(84.375deg);"><div class="bar bar-sm" style="animation-delay: 1.2s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(90deg);"><div class="bar bar-xl" style="animation-delay: 0s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(95.625deg);"><div class="bar bar-lg" style="animation-delay: 0.08s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(101.25deg);"><div class="bar bar-md" style="animation-delay: 0.16s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(106.875deg);"><div class="bar bar-sm" style="animation-delay: 0.24s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(112.5deg);"><div class="bar bar-xl" style="animation-delay: 0.32s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(118.125deg);"><div class="bar bar-lg" style="animation-delay: 0.4s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(123.75deg);"><div class="bar bar-md" style="animation-delay: 0.48s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(129.375deg);"><div class="bar bar-sm" style="animation-delay: 0.56s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(135deg);"><div class="bar bar-xl" style="animation-delay: 0.64s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(140.625deg);"><div class="bar bar-lg" style="animation-delay: 0.72s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(146.25deg);"><div class="bar bar-md" style="animation-delay: 0.8s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(151.875deg);"><div class="bar bar-sm" style="animation-delay: 0.88s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(157.5deg);"><div class="bar bar-xl" style="animation-delay: 0.96s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(163.125deg);"><div class="bar bar-lg" style="animation-delay: 1.04s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(168.75deg);"><div class="bar bar-md" style="animation-delay: 1.12s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(174.375deg);"><div class="bar bar-sm" style="animation-delay: 1.2s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(180deg);"><div class="bar bar-xl" style="animation-delay: 0s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(185.625deg);"><div class="bar bar-lg" style="animation-delay: 0.08s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(191.25deg);"><div class="bar bar-md" style="animation-delay: 0.16s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(196.875deg);"><div class="bar bar-sm" style="animation-delay: 0.24s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(202.5deg);"><div class="bar bar-xl" style="animation-delay: 0.32s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(208.125deg);"><div class="bar bar-lg" style="animation-delay: 0.4s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(213.75deg);"><div class="bar bar-md" style="animation-delay: 0.48s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(219.375deg);"><div class="bar bar-sm" style="animation-delay: 0.56s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(225deg);"><div class="bar bar-xl" style="animation-delay: 0.64s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(230.625deg);"><div class="bar bar-lg" style="animation-delay: 0.72s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(236.25deg);"><div class="bar bar-md" style="animation-delay: 0.8s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(241.875deg);"><div class="bar bar-sm" style="animation-delay: 0.88s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(247.5deg);"><div class="bar bar-xl" style="animation-delay: 0.96s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(253.125deg);"><div class="bar bar-lg" style="animation-delay: 1.04s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(258.75deg);"><div class="bar bar-md" style="animation-delay: 1.12s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(264.375deg);"><div class="bar bar-sm" style="animation-delay: 1.2s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(270deg);"><div class="bar bar-xl" style="animation-delay: 0s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(275.625deg);"><div class="bar bar-lg" style="animation-delay: 0.08s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(281.25deg);"><div class="bar bar-md" style="animation-delay: 0.16s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(286.875deg);"><div class="bar bar-sm" style="animation-delay: 0.24s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(292.5deg);"><div class="bar bar-xl" style="animation-delay: 0.32s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(298.125deg);"><div class="bar bar-lg" style="animation-delay: 0.4s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(303.75deg);"><div class="bar bar-md" style="animation-delay: 0.48s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(309.375deg);"><div class="bar bar-sm" style="animation-delay: 0.56s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(315deg);"><div class="bar bar-xl" style="animation-delay: 0.64s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(320.625deg);"><div class="bar bar-lg" style="animation-delay: 0.72s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(326.25deg);"><div class="bar bar-md" style="animation-delay: 0.8s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(331.875deg);"><div class="bar bar-sm" style="animation-delay: 0.88s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(337.5deg);"><div class="bar bar-xl" style="animation-delay: 0.96s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(343.125deg);"><div class="bar bar-lg" style="animation-delay: 1.04s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(348.75deg);"><div class="bar bar-md" style="animation-delay: 1.12s;"></div></div>
+                <div class="bar-wrapper" style="transform: rotate(354.375deg);"><div class="bar bar-sm" style="animation-delay: 1.2s;"></div></div>
+            </div>
+
+            <div class="beat-icon">
+                <div class="beat-glow"></div>
+                <div class="beat-ring ring-1"></div>
+                <div class="beat-ring ring-2"></div>
+                <div class="beat-ring ring-3"></div>
+                <div class="beat-icon-inner">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-head">
+        <div>
+            <h2 class="section-title">
+                <span class="icon-badge"><i class="fa-solid fa-music"></i></span>
+                Latest Music
+            </h2>
+            <p class="section-sub">Fresh tracks, handpicked for you</p>
+        </div>
+        <a href="music.html" class="view-all">
+            View All <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <div class="grid grid-4">
+            <a href="music-14.html" class="music-card card-dark">
+                <div class="img-frame music-img">
+                    <img src="assets/storage/music/alone.jpg" alt="Alone">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Alone</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Marshmello
+                    </div>
+                </div>
+            </a>
+            <a href="music-13.html" class="music-card card-dark">
+                <div class="img-frame music-img">
+                    <img src="assets/storage/music/ghoomar.jpg" alt="Ghoomar">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="pill pill-new badge-corner">New</span>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Ghoomar</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Shreya Ghoshal
+                    </div>
+                </div>
+            </a>
+            <a href="music-12.html" class="music-card card-dark">
+                <div class="img-frame music-img">
+                    <img src="assets/storage/music/channa-mereya.jpg" alt="Channa Mereya">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Channa Mereya</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Arijit Singh
+                    </div>
+                </div>
+            </a>
+            <a href="music-11.html" class="music-card card-dark">
+                <div class="img-frame music-img">
+                    <img src="assets/storage/music/tum-hi-ho.jpg" alt="Tum Hi Ho">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Tum Hi Ho</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Arijit Singh
+                    </div>
+                </div>
+            </a>
+            <a href="music-10.html" class="music-card card-dark">
+                <div class="img-frame music-img">
+                    <img src="assets/storage/music/happier-than-ever.jpg" alt="Happier Than Ever">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="pill pill-new badge-corner">New</span>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Happier Than Ever</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Billie Eilish
+                    </div>
+                </div>
+            </a>
+            <a href="music-9.html" class="music-card card-dark">
+                <div class="img-frame music-img">
+                    <img src="assets/storage/music/perfect.jpg" alt="Perfect">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Perfect</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Ed Sheeran
+                    </div>
+                </div>
+            </a>
+            <a href="music-8.html" class="music-card card-dark">
+                <div class="img-frame music-img">
+                    <img src="assets/storage/music/shape-of-you.jpg" alt="Shape of You">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Shape of You</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Ed Sheeran
+                    </div>
+                </div>
+            </a>
+            <a href="music-7.html" class="music-card card-dark">
+                <div class="img-frame music-img">
+                    <img src="assets/storage/music/blank-space.jpg" alt="Blank Space">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Blank Space</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Taylor Swift
+                    </div>
+                </div>
+            </a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-head">
+        <div>
+            <h2 class="section-title">
+                <span class="icon-badge"><i class="fa-solid fa-microphone"></i></span>
+                Top Artists
+            </h2>
+            <p class="section-sub">Voices that define our sound</p>
+        </div>
+        <a href="artists.html" class="view-all">
+            View All <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <div class="artist-row">
+        <a href="artist-1.html" class="artist-bubble">
+            <div class="artist-ring">
+                <div class="artist-avatar">
+                    <img src="assets/storage/artists/atif-aslam.jpg" alt="Atif Aslam">
+                </div>
+                <div class="artist-glow"></div>
+            </div>
+            <div class="artist-name-sm">Atif Aslam</div>
+            <div class="artist-tracks">2 tracks</div>
+        </a>
+        <a href="artist-2.html" class="artist-bubble">
+            <div class="artist-ring">
+                <div class="artist-avatar">
+                    <img src="assets/storage/artists/ali-zafar.jpg" alt="Ali Zafar">
+                </div>
+                <div class="artist-glow"></div>
+            </div>
+            <div class="artist-name-sm">Ali Zafar</div>
+            <div class="artist-tracks">2 tracks</div>
+        </a>
+        <a href="artist-4.html" class="artist-bubble">
+            <div class="artist-ring">
+                <div class="artist-avatar">
+                    <img src="assets/storage/artists/taylor-swift.jpg" alt="Taylor Swift">
+                </div>
+                <div class="artist-glow"></div>
+            </div>
+            <div class="artist-name-sm">Taylor Swift</div>
+            <div class="artist-tracks">2 tracks</div>
+        </a>
+        <a href="artist-5.html" class="artist-bubble">
+            <div class="artist-ring">
+                <div class="artist-avatar">
+                    <img src="assets/storage/artists/ed-sheeran.jpg" alt="Ed Sheeran">
+                </div>
+                <div class="artist-glow"></div>
+            </div>
+            <div class="artist-name-sm">Ed Sheeran</div>
+            <div class="artist-tracks">2 tracks</div>
+        </a>
+        <a href="artist-8.html" class="artist-bubble">
+            <div class="artist-ring">
+                <div class="artist-avatar">
+                    <img src="assets/storage/artists/arijit-singh.jpg" alt="Arijit Singh">
+                </div>
+                <div class="artist-glow"></div>
+            </div>
+            <div class="artist-name-sm">Arijit Singh</div>
+            <div class="artist-tracks">2 tracks</div>
+        </a>
+        <a href="artist-3.html" class="artist-bubble">
+            <div class="artist-ring">
+                <div class="artist-avatar">
+                    <img src="assets/storage/artists/rahat-fateh-ali-khan.jpg" alt="Rahat Fateh Ali Khan">
+                </div>
+                <div class="artist-glow"></div>
+            </div>
+            <div class="artist-name-sm">Rahat Fateh Ali Khan</div>
+            <div class="artist-tracks">1 tracks</div>
+        </a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-head">
+        <div>
+            <h2 class="section-title">
+                <span class="icon-badge"><i class="fa-solid fa-compact-disc"></i></span>
+                Fresh Albums
+            </h2>
+            <p class="section-sub">Complete collections worth exploring</p>
+        </div>
+        <a href="albums.html" class="view-all">
+            View All <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <div class="grid grid-4">
+            <a href="album-10.html" class="album-card card-dark">
+                <div class="album-cover-wrap">
+                    <img src="assets/storage/albums/joytime.jpg" alt="Joytime" class="album-cover">
+                </div>
+                <div class="album-meta">
+                    <div class="album-title">Joytime</div>
+                    <div class="album-artist">Marshmello · 2016</div>
+                </div>
+            </a>
+            <a href="album-9.html" class="album-card card-dark">
+                <div class="album-cover-wrap">
+                    <img src="assets/storage/albums/ghoomar.jpg" alt="Ghoomar" class="album-cover">
+                </div>
+                <div class="album-meta">
+                    <div class="album-title">Ghoomar</div>
+                    <div class="album-artist">Shreya Ghoshal · 2018</div>
+                </div>
+            </a>
+            <a href="album-8.html" class="album-card card-dark">
+                <div class="album-cover-wrap">
+                    <img src="assets/storage/albums/aashiqui-2.jpg" alt="Aashiqui 2" class="album-cover">
+                </div>
+                <div class="album-meta">
+                    <div class="album-title">Aashiqui 2</div>
+                    <div class="album-artist">Arijit Singh · 2013</div>
+                </div>
+            </a>
+            <a href="album-7.html" class="album-card card-dark">
+                <div class="album-cover-wrap">
+                    <img src="assets/storage/albums/oral-fixation.jpg" alt="Oral Fixation" class="album-cover">
+                </div>
+                <div class="album-meta">
+                    <div class="album-title">Oral Fixation</div>
+                    <div class="album-artist">Shakira · 2005</div>
+                </div>
+            </a>
+            <a href="album-6.html" class="album-card card-dark">
+                <div class="album-cover-wrap">
+                    <img src="assets/storage/albums/happier-than-ever.jpg" alt="Happier Than Ever" class="album-cover">
+                </div>
+                <div class="album-meta">
+                    <div class="album-title">Happier Than Ever</div>
+                    <div class="album-artist">Billie Eilish · 2021</div>
+                </div>
+            </a>
+            <a href="album-5.html" class="album-card card-dark">
+                <div class="album-cover-wrap">
+                    <img src="assets/storage/albums/divide.jpg" alt="Divide" class="album-cover">
+                </div>
+                <div class="album-meta">
+                    <div class="album-title">Divide</div>
+                    <div class="album-artist">Ed Sheeran · 2017</div>
+                </div>
+            </a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-head">
+        <div>
+            <h2 class="section-title">
+                <span class="icon-badge"><i class="fa-solid fa-video"></i></span>
+                Latest Videos
+            </h2>
+            <p class="section-sub">Watch music come alive</p>
+        </div>
+        <a href="videos.html" class="view-all">
+            View All <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <div class="grid grid-4">
+            <a href="video-9.html" class="video-card card-dark">
+                <div class="img-frame video-img">
+                    <img src="assets/storage/videos/alone-thumb.jpg" alt="Alone - Marshmello">
+                    <div class="video-play-overlay">
+                        <div class="video-play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">4:32</span>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Alone - Marshmello</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Marshmello
+                    </div>
+                </div>
+            </a>
+            <a href="video-8.html" class="video-card card-dark">
+                <div class="img-frame video-img">
+                    <img src="assets/storage/videos/ghoomar-thumb.jpg" alt="Ghoomar - Shreya Ghoshal">
+                    <div class="video-play-overlay">
+                        <div class="video-play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">4:45</span>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Ghoomar - Shreya Ghoshal</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Shreya Ghoshal
+                    </div>
+                </div>
+            </a>
+            <a href="video-7.html" class="video-card card-dark">
+                <div class="img-frame video-img">
+                    <img src="assets/storage/videos/tum-hi-ho-thumb.jpg" alt="Tum Hi Ho - Arijit Singh">
+                    <div class="video-play-overlay">
+                        <div class="video-play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">4:22</span>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Tum Hi Ho - Arijit Singh</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Arijit Singh
+                    </div>
+                </div>
+            </a>
+            <a href="video-6.html" class="video-card card-dark">
+                <div class="img-frame video-img">
+                    <img src="assets/storage/videos/happier-than-ever-thumb.jpg" alt="Happier Than Ever - Billie Eilish">
+                    <div class="video-play-overlay">
+                        <div class="video-play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <span class="video-duration">4:58</span>
+                </div>
+                <div class="music-meta">
+                    <div class="music-title">Happier Than Ever - Billie Eilish</div>
+                    <div class="music-artist">
+                        <i class="fa-solid fa-user"></i>
+                        Billie Eilish
+                    </div>
+                </div>
+            </a>
+    </div>
+</section>
+    </main>
+
+    <div class="player" id="player">
+        <div class="player-track">
+            <div class="player-art"><i class="fa-solid fa-music"></i></div>
+            <div class="player-meta">
+                <div class="player-title">Midnight Frequencies</div>
+                <div class="player-artist">Neon Collective</div>
+            </div>
+        </div>
+        <div class="player-center">
+            <div class="player-controls">
+                <button><i class="fa-solid fa-shuffle"></i></button>
+                <button><i class="fa-solid fa-backward-step"></i></button>
+                <button class="player-play" id="playerPlay"><i class="fa-solid fa-play"></i></button>
+                <button><i class="fa-solid fa-forward-step"></i></button>
+                <button><i class="fa-solid fa-repeat"></i></button>
+            </div>
+            <div class="player-progress">
+                <span>1:24</span>
+                <div class="player-bar"><div class="player-bar-fill"></div></div>
+                <span>3:45</span>
+            </div>
+        </div>
+        <div class="player-right">
+            <div class="player-wave"><span></span><span></span><span></span><span></span><span></span></div>
+            <i class="fa-solid fa-heart liked"></i>
+            <i class="fa-solid fa-volume-high"></i>
+        </div>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

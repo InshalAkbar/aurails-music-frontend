@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURAILS — Register</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/pages/user_register.css">
+</head>
+<body data-page="register">
+
+    <div class="bg-slider">
+        <div class="bg-slide" style="background-image: url('assets/storage/artists/atif-aslam.jpg');"></div>
+        <div class="bg-slide" style="background-image: url('assets/storage/artists/taylor-swift.jpg');"></div>
+        <div class="bg-slide" style="background-image: url('assets/storage/artists/billie-eilish.jpg');"></div>
+        <div class="bg-slide" style="background-image: url('assets/storage/artists/arijit-singh.jpg');"></div>
+        <div class="bg-slide" style="background-image: url('assets/storage/artists/ed-sheeran.jpg');"></div>
+    </div>
+    <div class="bg-overlay"></div>
+    <div class="bg-grid"></div>
+
+    <a href="index.html" class="back-home">
+        <i class="fa-solid fa-arrow-left"></i> <span>Back to Home</span>
+    </a>
+
+    <div class="register-card">
+
+        <div class="brand">
+            <div class="brand-logo">
+                <div class="brand-wave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <span>AURAILS</span>
+            </div>
+        </div>
+
+        <h2 class="register-title">Create your account</h2>
+        <p class="register-sub">Join Aurails — start streaming today</p>
+
+        <div style="height: 18px;"></div>
+
+        <div class="alert alert-danger" id="formAlert" hidden>
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <div id="formAlertText"></div>
+        </div>
+
+        <form id="registerForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-user input-icon"></i>
+                        <input type="text" name="name" class="form-input" placeholder="John Doe" required autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                        <input type="email" name="email" class="form-input" placeholder="you@example.com" required>
+                    </div>
+                </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Phone</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-phone input-icon"></i>
+                        <input type="text" name="phone" class="form-input" placeholder="Optional">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Address</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-location-dot input-icon"></i>
+                        <input type="text" name="address" class="form-input" placeholder="Optional">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" name="password" class="form-input" placeholder="Min. 6 characters" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" name="password_confirmation" class="form-input" placeholder="Repeat password" required>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-register">
+                <span><i class="fa-solid fa-user-plus me-1"></i> Create Account</span>
+            </button>
+        </form>
+
+        <div class="divider">Or</div>
+
+        <div class="login-link">
+            Already have an account? <a href="user-login.html">Sign in</a>
+        </div>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/pages/auth.js"></script>
+</body>
+</html>
